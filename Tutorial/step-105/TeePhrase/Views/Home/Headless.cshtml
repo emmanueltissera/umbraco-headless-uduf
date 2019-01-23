@@ -1,0 +1,15 @@
+﻿@using Umbraco.Headless.Client.Net.Models
+@model IEnumerable<ContentItem>
+
+<h2>Content items of type `design` from Umbraco headless</h2>
+
+@foreach (var item in Model)
+{
+    <h3>@item.Name <small>@item.Id</small></h3>
+    <ul>
+        @foreach (var property in item.Properties)
+        {
+            <li><b>@property.Alias:</b>  @property.Value</li>
+        }
+    </ul>
+}
