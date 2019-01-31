@@ -1,5 +1,3 @@
-using System;
-
 namespace TeePhrase.Models
 {
     public class ErrorViewModel
