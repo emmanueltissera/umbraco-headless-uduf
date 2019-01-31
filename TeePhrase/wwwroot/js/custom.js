@@ -11,11 +11,13 @@
             $(".filter button").removeClass("active");
             // Use the last category class as the category to filter by. This means that multiple categories are not supported (yet)
             var filterClass = $(this).attr('data-filter');
+
+            var $filteredData;
             
-            if (filterClass == 'all') {
-                var $filteredData = $data.find('.portfolio-item');
+            if (filterClass === 'all') {
+                $filteredData = $data.find('.portfolio-item');
             } else {
-                var $filteredData = $data.find('.portfolio-item[data-type=' + filterClass + ']');
+                $filteredData = $data.find('.portfolio-item[data-type=' + filterClass + ']');
             }
 
             $(".portfolio-area").quicksand($filteredData, {

@@ -9,9 +9,8 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
-    <PackageReference Include="UmbracoCms.Headless.Client" Version="0.9.7-CI-20180905-01" />
-    <PackageReference Include="UmbracoCms.Headless.Client.Web" Version="0.9.7-CI-20180905-01" />
+    <PackageReference Include="UmbracoCms.Headless.Client" Version="0.9.7-CI-20190130-01" />
+    <PackageReference Include="UmbracoCms.Headless.Client.Web" Version="0.9.7-CI-20190130-01" />
   </ItemGroup>
 
 </Project>

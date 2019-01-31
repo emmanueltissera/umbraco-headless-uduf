@@ -1,39 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TeePhrase.Models;
-using Umbraco.Headless.Client.Net.Services; 
+using Umbraco.Headless.Client.Net.Services;
+using Umbraco.Headless.Client.Net.Web;
 
 namespace TeePhrase.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseContentItemController
     {
-        private readonly PublishedContentService _publishedContentService;
-
-        public HomeController(PublishedContentService publishedContentService)
+        public HomeController(UmbracoContext umbracoContext, PublishedContentService publishedContentService) : base(umbracoContext, publishedContentService)
         {
-            _publishedContentService = publishedContentService;
-        }
-        
-        public async Task<IActionResult> Headless()
-        {
-            // Get content by ContentType
-            var content = await _publishedContentService.GetAll("design");
-            return View(content);
         }
 
-        public IActionResult Index()
+        public override Task<IActionResult> Index()
         {
-            return View();
+            return RenderContentItem<Home>();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
     }
+
 }
