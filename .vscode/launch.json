@@ -10,7 +10,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/TeePhrase/bin/Debug/netcoreapp2.1/TeePhrase.dll",
+            "program": "${workspaceFolder}/TeePhrase/bin/Debug/netcoreapp2.2/TeePhrase.dll",
             "args": [],
             "cwd": "${workspaceFolder}/TeePhrase",
             "stopAtEntry": false,
