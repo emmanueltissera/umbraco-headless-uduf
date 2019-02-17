@@ -1,0 +1,33 @@
+﻿@inject PublishedContentService HeadlessService
+@model Shop
+@{
+    var designCollections = await HeadlessService.GetChildren<DesignCollection>(Model);
+}
+
+<div class="row">
+    <div class="col-lg-12 my-4 filter">
+        <div class="d-none d-sm-block btn-group no-focus" role="group" aria-label="Filter Designs">
+            <button type="button" class="btn btn-outline-secondary active" data-filter="all">All Designs</button>
+            @foreach (var singleCollection in designCollections)
+            {
+                <button type="button" class="btn btn-outline-secondary" data-filter="@singleCollection.Id">@singleCollection.Name</button>
+            }
+        </div>
+        <div class="d-block d-sm-none btn-group-vertical no-focus" role="group" aria-label="Filter Designs">
+            <button type="button" class="btn btn-outline-secondary active" data-filter="all">All Designs</button>
+            @foreach (var singleCollection in designCollections)
+            {
+                <button type="button" class="btn btn-outline-secondary" data-filter="@singleCollection.Id">@singleCollection.Name</button>
+            }
+        </div>
+    </div>
+</div>
+<div class="row portfolio-area">
+    @foreach (var singleCollection in designCollections)
+    {
+        foreach (var design in await HeadlessService.GetChildren<Design>(singleCollection))
+        {
+            @Html.DisplayFor(m => design, "DesignTile")
+        }
+    }
+</div>

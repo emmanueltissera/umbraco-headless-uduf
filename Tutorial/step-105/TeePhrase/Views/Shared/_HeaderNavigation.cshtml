@@ -1,0 +1,62 @@
+﻿@inject PublishedContentService PublishedContentService
+@model ContentItem
+
+@{
+    PagedResult<ContentItem> allChildren = await PublishedContentService.GetChildren(Model.Id);
+    var children = allChildren.ToList().Where(x => x.Name != "System");
+    var cssClass = Model.Url == "/" ? "active" : null;    
+}
+
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="~/img/logo/shirt.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+                Tee-Phrases
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item @cssClass">
+                        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    @foreach (var child in children)
+                    {
+                        var grandChildren = await PublishedContentService.GetChildren(child.Id);
+                        cssClass = Model.Url == child.Url || grandChildren.Any(x => Model.Url.StartsWith(x.Url)) ? "active" : null;
+                        if (grandChildren.Count > 0)
+                        {
+                            <li class="nav-item dropdown @cssClass">
+                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="@child.Url" role="button" aria-haspopup="true" aria-expanded="false">@child.Name</a>
+                                <div class="dropdown-menu">
+                                    @foreach (var grandChild in grandChildren)
+                                    {
+                                        cssClass = Model.Url == grandChild.Url || Model.Url.StartsWith(grandChild.Url) ? "active" : null;
+                                        <a class="dropdown-item @cssClass" href="@grandChild.Url">@grandChild.Name</a>
+                                    }
+                                    <div class="dropdown-divider"></div>
+                                    @{ 
+                                        cssClass = Model.Url == child.Url ? "active" : null;
+                                    }
+                                    <a class="dropdown-item @cssClass" href="@child.Url">@child.Name</a>
+                                </div>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item @cssClass">
+                                <a href="@child.Url" class="nav-link">@child.Name</a>
+                            </li>
+                        }
+                    }
+                </ul>
+                <form class="form-inline mt-2 mt-md-0">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+</header>

@@ -1,0 +1,21 @@
+﻿@inject PublishedContentService HeadlessService
+@model ContentItem
+@{
+    var ancestors = await HeadlessService.GetAncestors(Model.Id);
+}
+<div class="row">
+    <div class="col-lg-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb px-0 float-right">
+                @foreach (var item in ancestors.Reverse())
+                {
+                    <li class="breadcrumb-item"><a href="@item.Url">@item.Name</a></li>
+                }
+                <li class="breadcrumb-item active" aria-current="page">@Model.Name</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="col-lg-12">
+        <h1>@Model.Name</h1>
+    </div>
+</div>

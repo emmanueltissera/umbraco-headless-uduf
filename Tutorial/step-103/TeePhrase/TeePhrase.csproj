@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <UserSecretsId>72c2e2c6-2738-4cc5-ae27-4e1642b68953</UserSecretsId>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="UmbracoCms.Headless.Client" Version="0.9.7-CI-20190130-01" />
+    <PackageReference Include="UmbracoCms.Headless.Client.Web" Version="0.9.7-CI-20190130-01" />
+  </ItemGroup>
+
+</Project>
