@@ -1,0 +1,31 @@
+﻿@inject PublishedContentService HeadlessService
+@model Shop
+@{
+    var designCollections = await HeadlessService.GetChildren<DesignCollection>(Model);
+}
+
+<div class="row">
+    <div class="col-lg-12 my-4 filter">
+        <div class="d-none d-sm-block btn-group no-focus" role="group" aria-label="Filter Designs">
+            <button type="button" class="btn btn-outline-secondary active" data-filter="all">All Designs</button>
+            <button type="button" class="btn btn-outline-secondary" data-filter="89597f7a-19b8-431b-bcfe-1ff4e1b46778">Category 1</button>
+            <button type="button" class="btn btn-outline-secondary" data-filter="1d96f450-3cf4-4e93-a9ab-16cfd5f14692">Category 2</button>
+            <button type="button" class="btn btn-outline-secondary" data-filter="d382deba-7d16-49e8-82fd-c58cbb4dbdc4">Category 3</button>
+        </div>
+        <div class="d-block d-sm-none btn-group-vertical no-focus" role="group" aria-label="Filter Designs">
+            <button type="button" class="btn btn-outline-secondary active" data-filter="all">All Designs</button>
+            <button type="button" class="btn btn-outline-secondary" data-filter="89597f7a-19b8-431b-bcfe-1ff4e1b46778">Category 1</button>
+            <button type="button" class="btn btn-outline-secondary" data-filter="1d96f450-3cf4-4e93-a9ab-16cfd5f14692">Category 2</button>
+            <button type="button" class="btn btn-outline-secondary" data-filter="d382deba-7d16-49e8-82fd-c58cbb4dbdc4">Category 3</button>
+        </div>
+    </div>
+</div>
+<div class="row portfolio-area">
+    @foreach (var singleCollection in designCollections)
+    {
+        foreach (var design in await HeadlessService.GetChildren<Design>(singleCollection))
+        {
+            @Html.DisplayFor(m => design, "DesignTile")
+        }
+    }
+</div>
