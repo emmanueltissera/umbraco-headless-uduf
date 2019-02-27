@@ -3,7 +3,7 @@ using Umbraco.Headless.Client.Net.Models;
 
 namespace TeePhrase.Models
 {
-    public class Design : ContentItem, IContentBase
+    public class Design : ContentBase
     {
         public string Description { get; set; }
         public List<MediaItem> Photos { get; set; }
