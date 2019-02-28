@@ -2,7 +2,7 @@
 
 namespace TeePhrase.Models
 {
-    public class BlogIndex : ContentItem, IContentBase
+    public class BlogIndex : ContentBase
     {
     }
 }
