@@ -1,4 +1,4 @@
-﻿@model List<MediaItem>
+﻿@model List<Image>
 
 <div class="col-md-8">
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -19,7 +19,7 @@
             @foreach (var photo in Model)
                 {
             <div class="carousel-item @cssClass">
-                <img class="d-block w-100" src="@photo.Url()" alt="@photo.Name">
+                <img class="d-block w-100" src="@photo.FullUrl()" alt="@photo.Name">
             </div>
                     cssClass = null;
                 }

@@ -2,7 +2,7 @@
 
 <div class="col-lg-4 col-md-6 mb-4 portfolio-item" data-id="@Model.Id" data-type="@Model.ParentId">
     <div class="card h-100">
-        <a href="@Model.Url"><img class="card-img-top" src="@Model.Thumbnail.Url()" alt="@Model.Name"></a>
+        <a href="@Model.Url"><img class="card-img-top" src="@Model.Thumbnail.FullUrl()" alt="@Model.Name"></a>
         <div class="card-body">
             <h4 class="card-title">
                 <a href="@Model.Url">@Model.Name.TruncateTo(25)</a>

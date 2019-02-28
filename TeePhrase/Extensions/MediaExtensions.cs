@@ -1,24 +1,16 @@
 ﻿using System.Linq;
 using Newtonsoft.Json.Linq;
 using Umbraco.Headless.Client.Net.Models;
+using Umbraco.Headless.Client.Net.Models.Umbraco;
+using Umbraco.Headless.Client.Net.Web.Configuration;
 
 namespace TeePhrase.Extensions
 {
     public static class MediaExtensions
     {
-        public static string Url(this MediaItem mediaItem)
+        public static string FullUrl(this Image image)
         {
-            var fileProperty = mediaItem.Properties.FirstOrDefault(t => t.Alias == "umbracoFile");
-
-            var fileJObject  = (JObject) fileProperty?.Value;
-
-            if (fileJObject == null)
-            {
-                return string.Empty;
-            }
-
-            var filePath = fileJObject.GetValue("src");
-            var fullPath = "https://emmanuels-faithful-sloth.s1.umbraco.io" + filePath;
+            var fullPath = "https://emmanuels-faithful-sloth.s1.umbraco.io" + image.Url;
             return fullPath;
         }
     }
