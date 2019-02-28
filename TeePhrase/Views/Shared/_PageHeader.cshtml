@@ -1,5 +1,5 @@
 ﻿@inject PublishedContentService HeadlessService
-@model ContentItem
+@model ContentBase
 @{
     var ancestors = await HeadlessService.GetAncestors(Model.Id);
 }
