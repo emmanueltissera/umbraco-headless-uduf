@@ -2,7 +2,8 @@
 
 namespace TeePhrase.Models
 {
-    public class Shop : ContentBase
+    public class ButtonLink : ContentBase
     {
+
     }
 }

@@ -2,9 +2,9 @@
 
 namespace TeePhrase.Models
 {
-    public class UniqueSellingPoint : ContentItem, IContentBase
+    public class UniqueSellingPoint : ContentBase
     {
-        public IContentBase ButtonLink { get; set; }
+        public ButtonLink ButtonLink { get; set; }
         public string ButtonTitle { get; set; }
         public string Description { get; set; }
         public string Icon { get; set; }
