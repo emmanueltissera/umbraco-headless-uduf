@@ -2,7 +2,7 @@
 
 namespace TeePhrase.Models
 {
-    public class Contact : ContentItem, IContentBase
+    public class Contact : ContentBase
     {
     }
 }
